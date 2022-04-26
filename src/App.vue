@@ -5,7 +5,7 @@
     <!-- <MyComponent2/> -->
     <!-- <Dz2/> -->
     <!-- <MyComponent3/> -->
-    <!-- <MyComponent4/> -->
+    <MyComponent4/>
 
   </div>
 </template>
@@ -16,7 +16,7 @@
 // import MyComponent2 from './components/uroki/MyComponent2.vue'
 // import Dz2 from './components/Dz/Dz2.vue'
 // import MyComponent3 from './components/uroki/MyComponent3.vue'
-// import MyComponent4 from './components/uroki/MyComponent4.vue'
+import MyComponent4 from './components/uroki/MyComponent4.vue'
 
 
 
@@ -33,7 +33,7 @@ export default {
     // MyComponent2,
     // Dz2,
     // MyComponent3,
-    // MyComponent4,
+    MyComponent4,
 
   }
 }
