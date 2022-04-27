@@ -11,9 +11,9 @@
             <li
               v-for="(product,index) in products "
               :key="index"
-            >
+            > 
                 <product-card
-                :title="product.title"
+                :title="product.title" 
                 :price="product.price"
                 :img-Url="product.img-Url"
                 :count="product.count"
