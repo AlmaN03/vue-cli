@@ -1,28 +1,25 @@
 <template>
-    <div class="product-list">
-        <h1>Письменные столы</h1>
+  <div class="product-list">
+    <div class="flex top-information">
+      <h1>Письменные столы</h1>
         <!-- <input type="text" class="search" :value="searchText" @input="searchText = $event.target.value"> -->
-        <my-input v-model="searchText" />   
-        {{searchText}}
-        <button >
-          Найти
-        </button>
-        <ul class="list-default flex">
-            <li
-              v-for="(product,index) in products "
-              :key="index"
-            > 
-                <product-card
-                :title="product.title" 
-                :price="product.price"
-                :img-Url="product.img-Url"
-                :count="product.count"
-                @addToBasket="addToBasket(index)"
-
-                />
-            </li>
-        </ul>
+        <my-input @search="searchProducts" />   
+        
     </div>
+    <ul class="list-default flex">
+      <li 
+      v-for="(product,index) in products "
+      :key="index">
+        <product-card
+          :title="product.title" 
+          :price="product.price"
+          :img-Url="product.imgUrl"
+          :count="product.count"
+          @addToBasket="addToBasket(index)"
+          />
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -36,7 +33,7 @@ export default {
   components: {ProductCard,MyInput},
   data(){
       return{
-        searchText:'',
+
         products:[
               {
                 title: 'Стол Jim',
@@ -64,10 +61,14 @@ export default {
     addToBasket(index){
       console.log(index+1);
 
+    },
+    searchProducts(searchText){
+      console.log('Загрузить товары:'+searchText);
     }
   }
 }
 </script>
+
 
 <style lang="scss" scoped>
 li {
@@ -78,17 +79,8 @@ li {
   h1 {
     margin-bottom: 0;
   }
-  button {
-    background-color: rgb(221, 56, 56);
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 14px;
-    display: block;
-    cursor: pointer;
-    margin-left: 10px;
-  }
   margin-bottom: 22px;
 }
 </style>
+
 
