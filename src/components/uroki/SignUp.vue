@@ -1,23 +1,38 @@
 <template>
-<!-- модификатор (.trim) обрезает пробелы с лева и с права в данном случае у ви модела -->
-  <form class="sign-up">
+<!-- модификатор (.trim) обрезает пробелы с лева и с права в данном случае у ви модела.
+модификатор (.prevent) предотвращает перезагрузку страницы -->
+  <form v-if="!registrationPassed" class="sign-up" @submit.prevent="checkForm">
     <div class="form-group">
       <label for="login">Логин:</label>
-      <input 
-      id="login" 
-      class="form-control is-invalid"
-      v-model.trim="form.login"
+      <input
+        id="login"
+        class="form-control"
+        :class="$v.form.login.$error ? 'is-invalid' : ''"
+        v-model.trim="form.login"
       >
-      <p class="invalid-feedback">Ошибка!</p>
+      <p v-if="$v.form.login.$dirty && !$v.form.login.required" class="invalid-feedback">
+        Обязательное поле
+      </p>
+      <p v-if="$v.form.login.$dirty && !$v.form.login.minLength" class="invalid-feedback">
+        Здесь должно быть больше 5-и символов
+      </p>
     </div>
+
     <div class="form-group">
       <label for="login">Почта:</label>
       <input 
       id="email" 
       type="email"
       class="form-control"
+      :class="$v.form.email.$error ? 'is-invalid' : ''"
       v-model.trim="form.email"
       >
+      <p v-if="$v.form.email.$dirty && !$v.form.email.required" class="invalid-feedback">
+        Обязательное поле
+      </p>
+      <p v-if="$v.form.email.$dirty && !$v.form.email" class="invalid-feedback">
+        Email неккоректный 
+      </p>
     </div>
     <div class="form-group">
       <label for="login">Пароль:</label>
@@ -25,8 +40,13 @@
         id="password"
         type="password"
         class="form-control"
+        :class="$v.form.password.$error ? 'is-invalid' : ''"
         v-model.trim="form.password"
         >
+        <p v-if="$v.form.password.$dirty && !$v.form.password.required" class="invalid-feedback">
+        Обязательное поле
+        </p>
+      
     </div>
     <div class="form-group">
       <label for="country">Страна проживания:</label>
@@ -42,17 +62,34 @@
     </div>
     <div class="form-group">
       <label for="themes">Любимые темы: </label>
-      <select id="themes" class="form-control" v-model="form.favoiriteThemes" multiple>
+      <select id="themes" class="form-control" 
+      :class="$v.form.favoiriteThemes.$error ? 'is-invalid' : ''"
+      v-model="form.favoiriteThemes" multiple>
         <option 
         v-for="(theme, index) in themes "
         :value="theme.value"
         :key="index"
         >
         {{theme.label}}
-        
         </option>
       </select>
+      <p v-if="$v.form.favoiriteThemes.$dirty && !$v.form.favoiriteThemes.maxLength" class="invalid-feedback">
+          Не больше 3-х тем
+        </p>
+
     </div>
+    <!-- //////////////////////////////////////////////////// -->
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="agreeWithRules" v-model="form.agreeWithRules" >
+      <label class="form-check-label" for="agreeWithRules"
+      :class="$v.form.agreeWithRules.$error ? 'is-invalid' : ''"
+      >Ознакомлен(а) с правилами </label>
+      <p v-if="$v.form.agreeWithRules.$dirty && !$v.form.agreeWithRules.mustBeTrue" class="invalid-feedback">
+        Прочтите правила !
+      </p>
+<!-- /////////////////////////////////////////////////////////////// -->
+    </div>
+
                                                       <!-- Вариант с 1 чек боксом -->
     <div class="form-group form-check">
       <input type="checkbox" class="form-check-input" id="notification" v-model="form.agreeWithSendEmail" >
@@ -86,15 +123,23 @@
     </div>
     <button type="submit" class="btn btn-primary">Сохранить</button>
   </form>
+  <div v-else >
+    <h1>
+      {{`${form.login}, поздравляю вы успешно зарегестрированы  `}}
+    </h1>
+  </div>
+
 </template>
 
 <script>
 import { validationMixin } from 'vuelidate'
+import { required, minLength, email, maxLength } from 'vuelidate/lib/validators'
 
 export default {
   mixins: [validationMixin],
   data(){
       return{
+        registrationPassed: false,
         form:{
           login:'',
           email:'',
@@ -102,6 +147,7 @@ export default {
           country:'Russia',
           favoiriteThemes:['IT'],
           agreeWithSendEmail: [],
+          agreeWithRules: false,
           gendere: 'male',
         },
         countris:[
@@ -130,21 +176,39 @@ export default {
           {
             label: 'Математика',
             value: 'mathematics'
+          },
+          {
+            label: 'Физика',
+            value: 'physics'
           }
-
         ]
 
       }
   },
   validations:{
     form:{
-      login:{
-        simpleValidator(value){
-          console.log(value);
-          return value.length >5 
+      login:{required, minLength:minLength(5)},
+      email:{required, email},
+      password:{required},
+      favoiriteThemes:{maxLength:maxLength(3)},
+      agreeWithRules:{
+        mustBeTrue(value) {
+          return value
         }
-      }
+}
     }
+  },
+  methods:{
+    checkForm(){
+      this.$v.form.$touch()
+      if (!this.$v.form.$error)   //запускает валидацию на всех дочерних формах
+      {
+        console.log('Валидация призошла успешно ');
+        this.registrationPassed = true
+      }
+      
+    },
+    
   }
   
 }
