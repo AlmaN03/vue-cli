@@ -6,7 +6,8 @@
     <!-- <Dz2/> -->
     <!-- <MyComponent3/> -->
     <!-- <ProductList/> -->
-    <UserForm/>
+    <!-- <UserForm/> -->
+    <SignUp/>
 
   </div>
 </template>
@@ -18,7 +19,9 @@
 // import Dz2 from './components/Dz/Dz2.vue'
 // import MyComponent3 from './components/uroki/MyComponent3.vue'
 // import ProductList from './components/uroki/urok3/ProductList.vue'
-import UserForm from './components/uroki/UserForm.vue'
+// import UserForm from './components/uroki/UserForm.vue'
+import SignUp from './components/uroki/SignUp.vue'
+
 
 
 
@@ -37,7 +40,8 @@ export default {
     // Dz2,
     // MyComponent3,
     // ProductList,
-    UserForm,
+    // UserForm,
+    SignUp,
 
   }
 }
