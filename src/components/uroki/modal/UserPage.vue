@@ -5,7 +5,7 @@
         class="btn btn-primary"
         @click="openModal"
         >
-            Отправить что-нибуть
+            Подробнее
         </button>
         <modal
             v-if="isModalOpen"
@@ -67,15 +67,17 @@
                     </button>
             </template> -->
         </modal>
+        <text-editor />
         
     </div>
 </template>
 
 <script>
 import Modal from './ModalOne.vue'
+import TextEditor from './TextEditor'
 
 export default {
-    components: { Modal },
+    components: { Modal,TextEditor },
     data(){
         return{
             isModalOpen: false

@@ -15,8 +15,10 @@
                   <span aria-hidden="true"> &times;</span>
                   </button>
               </div>
+
+              <!-- ref="modalBody" при отсуцтвии миксина нужно вставить ниже -->
               <div class="modal-body"
-              ref="modalBody"
+              
               @scroll="onBodyScroll"
               >
                   <!-- слоты перезаписываются если передаются с родительскокого компонента  -->
@@ -34,6 +36,7 @@
                         type="button"
                         class="btn btn-primary"
                         :disabled="!isRulesReaded"
+                        @click="ConsilLog"
                         >
                         Принять
                     </button>
@@ -45,6 +48,9 @@
 </template>
 
 <script>
+// import ScrollHandler from '../../../mixins/scrollHandler' // микси нсейчас в плагине 
+
+
 // clientHeight - размер отображаемой скрол части
 // scrollTop- количество просколеных пикселей 
 // scrollHeight - высота скрол части
@@ -55,24 +61,36 @@ export default {
             default:''
         }
     },
+    // mixins:[ScrollHandler],
     data(){
         return{
             isRulesReaded: false
         }
     },
-    mounted(){
-        const modalBody =this.$refs.modalBody 
-        modalBody.scrollTop = modalBody.scrollHeight  -  modalBody.clientHeight
+    created(){
+        this.$log()
     },
+    // проматываетскрол в самый низ в данном случае в пользовательском соглашении
+    // mounted(){
+    //     const modalBody =this.$refs.modalBody 
+    //     modalBody.scrollTop = modalBody.scrollHeight  -  modalBody.clientHeight
+    // },
+    
     methods:{
+        ConsilLog(){
+            console.log('Сработано ');
+        },
         closeModal(){
             this.$emit('close')
         },
-        onBodyScroll(){
-            const modalBody =this.$refs.modalBody
-            if(modalBody.clientHeight+ modalBody.scrollTop >= modalBody.scrollHeight ){
-               this.isRulesReaded = true
-            }
+        // onBodyScroll(){ //перенесено в миксин 
+        //     const modalBody =this.$refs.modalBody
+        //     if(modalBody.clientHeight+ modalBody.scrollTop >= modalBody.scrollHeight ){
+        //        this.isRulesReaded = true
+        //     }
+        // },
+        onScrolEnd(){
+            this.isRulesReaded = true
         }
     } 
 }
