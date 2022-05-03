@@ -15,21 +15,29 @@
                   <span aria-hidden="true"> &times;</span>
                   </button>
               </div>
-              <div class="modal-body">
-                  <p>очень важный текст</p>
+              <div class="modal-body"
+              ref="modalBody"
+              @scroll="onBodyScroll"
+              >
+                  <!-- слоты перезаписываются если передаются с родительскокого компонента  -->
+                  <slot> </slot>
               </div>
               <div class="modal-footer">
-                  <button
-                  type="button"
-                  class="btn btn-secondary"
-                  @click="closeModal"
-                  >Отмена</button>
-                  <button
-                  type="button"
-                  class="btn btn-primary"
-                  >
-                  Сохранить
-                  </button>
+                  <slot name="footer"> 
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        @click="closeModal"
+                        >Отмена
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        :disabled="!isRulesReaded"
+                        >
+                        Принять
+                    </button>
+                  </slot>
               </div>
           </div>
       </div>
@@ -37,6 +45,9 @@
 </template>
 
 <script>
+// clientHeight - размер отображаемой скрол части
+// scrollTop- количество просколеных пикселей 
+// scrollHeight - высота скрол части
 export default {
     props:{
         title:{
@@ -44,11 +55,26 @@ export default {
             default:''
         }
     },
+    data(){
+        return{
+            isRulesReaded: false
+        }
+    },
+    mounted(){
+        const modalBody =this.$refs.modalBody 
+        modalBody.scrollTop = modalBody.scrollHeight  -  modalBody.clientHeight
+    },
     methods:{
         closeModal(){
             this.$emit('close')
+        },
+        onBodyScroll(){
+            const modalBody =this.$refs.modalBody
+            if(modalBody.clientHeight+ modalBody.scrollTop >= modalBody.scrollHeight ){
+               this.isRulesReaded = true
+            }
         }
-    }  
+    } 
 }
 </script>
 
