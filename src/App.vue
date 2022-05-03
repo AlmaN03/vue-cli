@@ -7,7 +7,8 @@
     <!-- <MyComponent3/> -->
     <!-- <ProductList/> -->
     <!-- <UserForm/> -->
-    <SignUp/>
+    <!-- <SignUp/> -->
+    <UserPage/>
 
   </div>
 </template>
@@ -20,7 +21,8 @@
 // import MyComponent3 from './components/uroki/MyComponent3.vue'
 // import ProductList from './components/uroki/urok3/ProductList.vue'
 // import UserForm from './components/uroki/UserForm.vue'
-import SignUp from './components/uroki/SignUp.vue'
+// import SignUp from './components/uroki/SignUp.vue'
+import UserPage from './components/uroki/modal/UserPage.vue'
 
 
 
@@ -41,7 +43,8 @@ export default {
     // MyComponent3,
     // ProductList,
     // UserForm,
-    SignUp,
+    // SignUp,
+    UserPage
 
   }
 }
