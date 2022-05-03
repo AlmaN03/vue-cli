@@ -81,12 +81,14 @@ export default {
 
 <style lang="scss" scoped>
 .modal {
+    margin-top: 80px;
   display: block;
   &-body {
     height: 200px;
     overflow-y: scroll;
   }
 }
+
 </style>
 
 

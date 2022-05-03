@@ -91,6 +91,6 @@ export default {
 
 <style lang="scss" scoped>
 .user-page{
-    margin: 10px;
+    margin:15px 50px ;
 }
 </style>

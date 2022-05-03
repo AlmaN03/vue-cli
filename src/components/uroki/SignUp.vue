@@ -46,7 +46,7 @@
         <p v-if="$v.form.password.$dirty && !$v.form.password.required" class="invalid-feedback">
         Обязательное поле
         </p>
-      
+
     </div>
     <div class="form-group">
       <label for="country">Страна проживания:</label>
@@ -76,9 +76,7 @@
       <p v-if="$v.form.favoiriteThemes.$dirty && !$v.form.favoiriteThemes.maxLength" class="invalid-feedback">
           Не больше 3-х тем
         </p>
-
     </div>
-    <!-- //////////////////////////////////////////////////// -->
     <div class="form-group form-check">
       <input type="checkbox" class="form-check-input" id="agreeWithRules" v-model="form.agreeWithRules" >
       <label class="form-check-label" for="agreeWithRules"
@@ -87,7 +85,6 @@
       <p v-if="$v.form.agreeWithRules.$dirty && !$v.form.agreeWithRules.mustBeTrue" class="invalid-feedback">
         Прочтите правила !
       </p>
-<!-- /////////////////////////////////////////////////////////////// -->
     </div>
 
                                                       <!-- Вариант с 1 чек боксом -->
@@ -96,7 +93,6 @@
       <label class="form-check-label" for="notification">Уведомлять меня о новых курсах </label>
     </div>
                                                       <!-- вариант с 2 чек боксами -->
-
     <!-- <div class="form-group form-check">
       <input type="checkbox" value="1" class="form-check-input" id="notification" v-model="form.agreeWithSendEmail" >
       <label class="form-check-label" for="notification">Уведомлять меня о новых курсах </label>
@@ -105,8 +101,6 @@
       <input type="checkbox" value="2" class="form-check-input" id="notification2" v-model="form.agreeWithSendEmail" >
       <label class="form-check-label" for="notification2">Уведомлять меня о новых курсах222 </label>
     </div> -->
-
-
     <div class="flex">
       <div class="form-check">
         <input class="form-check-input" type="radio" value="male" name="exampleRadios" id="male" v-model="form.gendere" >
@@ -128,7 +122,6 @@
       {{`${form.login}, поздравляю вы успешно зарегестрированы  `}}
     </h1>
   </div>
-
 </template>
 
 <script>
@@ -182,7 +175,6 @@ export default {
             value: 'physics'
           }
         ]
-
       }
   },
   validations:{
@@ -195,7 +187,7 @@ export default {
         mustBeTrue(value) {
           return value
         }
-}
+      }
     }
   },
   methods:{
@@ -206,17 +198,12 @@ export default {
         console.log('Валидация призошла успешно ');
         this.registrationPassed = true
       }
-      
-    },
-    
+    }, 
   }
-  
 }
 </script>
 
 <style lang="scss" scoped>
-
-
 
 .sign-up{
   margin:10px 50px ;
