@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import FilmsList from '../components/FilmsList'
+import FilmsList from '../components/films/FilmsList.vue'
 import films from '../mocks/films'
 
 
