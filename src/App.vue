@@ -8,7 +8,7 @@
     <!-- <ProductList/> -->
     <!-- <UserForm/> -->
     <!-- <SignUp/> -->
-    <UserPage/>
+    <!-- <UserPage/> -->
 
   </div>
 </template>
@@ -22,7 +22,7 @@
 // import ProductList from './components/uroki/urok3/ProductList.vue'
 // import UserForm from './components/uroki/UserForm.vue'
 // import SignUp from './components/uroki/SignUp.vue'
-import UserPage from './components/uroki/modal/UserPage.vue'
+// import UserPage from './components/uroki/modal/UserPage.vue'
 
 
 
@@ -44,7 +44,7 @@ export default {
     // ProductList,
     // UserForm,
     // SignUp,
-    UserPage
+    // UserPage
 
   }
 }
