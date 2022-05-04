@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import MainPage from '../pages/MainPage'
 import AllFilmsPage from '../pages/AllFilmsPage'
 import FilmPage from '../pages/FilmPage'
-import NotFound from '../pages/ErrorError404'
+import NotFound from '../pages/404'
 import FilmsLayout from '../pages/FilmsLayout'
 
 export default new VueRouter({
