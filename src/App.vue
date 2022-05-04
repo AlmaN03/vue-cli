@@ -9,6 +9,7 @@
     <!-- <UserForm/> -->
     <!-- <SignUp/> -->
     <!-- <UserPage/> -->
+    <router-view></router-view>
 
   </div>
 </template>
@@ -35,7 +36,7 @@
 
 export default {
   name: 'App',
-  components: {
+  // components: {
     // MyComponent1,
     // Dz1,
     // MyComponent2,
@@ -46,7 +47,7 @@ export default {
     // SignUp,
     // UserPage
 
-  }
+  // }
 }
 </script>
 
