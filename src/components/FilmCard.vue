@@ -6,8 +6,12 @@
     >
     <p class="rating">{{ film.rating }}</p>
     <p class="title">{{ film.title }}</p>
-    <router-link
+    <!-- <router-link
       :to="{ name: 'filmPage', params: { id: film.id } }"
+      class="more-info"
+    > -->
+    <router-link
+      :to="{ path: `/films/${film.id} `}"
       class="more-info"
     >
       Подробнее о фильме

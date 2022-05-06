@@ -1,15 +1,13 @@
 <template>
-  <div class="main-page">
+  <div class="not-found">
     <h1>
-      Онлайн кинотеатр
+      Ничего не найдено
     </h1>
-    <button type="button" class="btn btn-outline-light" 
-    @click="$router.push({name: 'films'}) " >Перейти к фильмам</button>
   </div>
 </template>
 
 <style lang="scss" scoped>
-  .main-page {
+  .not-found {
     display: flex;
     flex-direction: column;
     justify-content: center;
