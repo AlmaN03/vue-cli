@@ -11,13 +11,13 @@ import { mapActions } from 'vuex'
 
 export default {
   components: { MainHeader },
-  methods:{
+  methods: {
     ...mapActions({
-      load:'LoadReactions'})
+      load: 'reactions/loadReactions'
+    })
   },
-  created(){
+  created() {
     this.load(1000)
-    // this.$store.dispatch('LoadReactions', 1000)
   }
 }
 </script>

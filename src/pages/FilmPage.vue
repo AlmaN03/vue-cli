@@ -57,7 +57,9 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['getReactions']),
+    ...mapGetters({
+      getReactions: 'reactions/getReactions'
+    }),
     reactions(){
       //reactions
       // return this.$store.getters.getReactions 
