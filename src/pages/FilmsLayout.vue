@@ -7,8 +7,17 @@
 
 <script>
 import MainHeader from '../components/MainHeader'
+import { mapActions } from 'vuex'
 
 export default {
-  components: { MainHeader }
+  components: { MainHeader },
+  methods:{
+    ...mapActions({
+      load:'LoadReactions'})
+  },
+  created(){
+    this.load(1000)
+    // this.$store.dispatch('LoadReactions', 1000)
+  }
 }
 </script>

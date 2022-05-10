@@ -45,7 +45,9 @@
 
 <script>
 import films from '../mocks/films'
-import reactions from '../mocks/reactions'
+// import reactions from '../mocks/reactions'
+import { mapGetters } from 'vuex'
+
 
 
 export default {
@@ -55,8 +57,12 @@ export default {
     }
   },
   computed:{
+    ...mapGetters(['getReactions']),
     reactions(){
-      return reactions
+      //reactions
+      // return this.$store.getters.getReactions 
+      return this.getReactions 
+
     }
   },
   created() {
@@ -127,4 +133,5 @@ export default {
   }
 }
 </style>
+
 
