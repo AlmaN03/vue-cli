@@ -61,7 +61,7 @@ export default {
       getReactions: 'reactions/getReactions'
     }),
     reactions(){
-      //reactions
+      //return reactions
       // return this.$store.getters.getReactions 
       return this.getReactions 
 
