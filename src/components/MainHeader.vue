@@ -55,19 +55,11 @@ export default {
       deleteUser: 'user/deleteUser'
     }),
     onAuthBtnClick() {
-      if (this.getUser) {
-        this.$api.auth.logout()
-        localStorage.removeItem('user')
-        this.deleteUser()
-        this.$router.push({ name: 'main' })
-      } else {
         this.isAuthModalOpen = true
-      }
     }
   }
 }
 </script>
-
 
 <style lang="scss" scoped>
 header {

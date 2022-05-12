@@ -74,10 +74,10 @@
 
 <script>
 import Modal from './ModalOne.vue'
-import TextEditor from './TextEditor'
+// import TextEditor from './TextEditor'
 
 export default {
-    components: { Modal,TextEditor },
+    components: { Modal, /*TextEditor*/ },
     data(){
         return{
             isModalOpen: false
