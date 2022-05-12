@@ -26,8 +26,8 @@ export default {
       actions:{
         async loadReactions({commit}, payload){
           try{
-            const reactions = await loadReactions (payload)
-            commit ('SET_REACTIONS',reactions)
+            const reactions1 = await loadReactions (payload)
+            commit ('SET_REACTIONS',reactions1)
     
           } catch(error){
             console.error(error);
