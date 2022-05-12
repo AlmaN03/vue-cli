@@ -25,30 +25,7 @@
                 magni minus, saepe voluptatem. Laborum temporibus quas eos minus 
                 placeat saepe nisi nesciunt distinctio optio fugit.
                 </p>
-                <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-                Molestiae, repellendus fugit. Perferendis molestiae reiciendis 
-                magni minus, saepe voluptatem. Laborum temporibus quas eos minus 
-                placeat saepe nisi nesciunt distinctio optio fugit.
-                </p>
-                <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-                Molestiae, repellendus fugit. Perferendis molestiae reiciendis 
-                magni minus, saepe voluptatem. Laborum temporibus quas eos minus 
-                placeat saepe nisi nesciunt distinctio optio fugit.
-                </p>
-                <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-                Molestiae, repellendus fugit. Perferendis molestiae reiciendis 
-                magni minus, saepe voluptatem. Laborum temporibus quas eos minus 
-                placeat saepe nisi nesciunt distinctio optio fugit.
-                </p>
-                <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-                Molestiae, repellendus fugit. Perferendis molestiae reiciendis 
-                magni minus, saepe voluptatem. Laborum temporibus quas eos minus 
-                placeat saepe nisi nesciunt distinctio optio fugit.
-                </p>               
+                              
            </div>
            <!-- Передача в именной слот -->
             <!-- <template v-slot:footer>

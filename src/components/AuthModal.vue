@@ -1,54 +1,60 @@
 <template>
-  <modal
-    name="auth-modal"
-    classes="auth-modal"
-    height="350px"
-    width="500px"
-    @before-close="close"
-  >
-    <form @submit.prevent="formSubmit">
-      <h3>{{ isSignInForm ? 'Войти' : 'Зарегистрироваться' }}</h3>
-      <label>
-        Email
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Ваша эл. почта"
-          v-model="form.email"
+  <div class="modal fade show">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <modal
+          name="auth-modal"
+          classes="auth-modal"
+          height="350px"
+          width="500px"
+          @before-close="close"
         >
-      </label>
-      <label>
-        Пароль
-        <input
-          type="password"
-          class="form-control"
-          placeholder="Ваш пароль"
-          v-model="form.password"
-        >
-      </label>
-      <div class="actions">
-        <a
-          href="#"
-          @click.prevent="mode = isSignInForm ? 'signUp' : 'signIn'"
-        >
-          {{ isSignInForm ? 'Регистрация' : 'Вход' }}
-        </a>
-        <button
-          type="button"
-          class="btn btn-outline-dark"
-          @click="$emit('close')"
-        >
-          Отмена
-        </button>
-        <button
-          type="submit"
-          class="btn btn-dark"
-        >
-          Подтвердить
-        </button>
+          <form @submit.prevent="formSubmit">
+            <h3>{{ isSignInForm ? 'Войти' : 'Зарегистрироваться' }}</h3>
+            <label>
+              Email
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Ваша эл. почта"
+                v-model="form.email"
+              >
+            </label>
+            <label>
+              Пароль
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Ваш пароль"
+                v-model="form.password"
+              >
+            </label>
+            <div class="actions">
+              <a
+                href="#"
+                @click.prevent="mode = isSignInForm ? 'signUp' : 'signIn'"
+              >
+                {{ isSignInForm ? 'Регистрация' : 'Вход' }}
+              </a>
+              <button
+                type="button"
+                class="btn btn-outline-dark"
+                @click="$emit('close')"
+              >
+                Отмена
+              </button>
+              <button
+                type="submit"
+                class="btn btn-dark"
+              >
+                Подтвердить
+              </button>
+            </div>
+          </form>
+        </modal>
       </div>
-    </form>
-  </modal>
+    </div>
+  </div>            
 </template>
 
 <script>
@@ -119,32 +125,40 @@ export default {
 </script>
 
 <style lang="scss">
-.auth-modal {
+.modal {
+  margin-top: 80px;
+  display: flex;
+}
+
+modal{
   padding: 30px 40px;
-  form {
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  h3 {
+    margin-bottom: 30px;
+  }
+  label {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .actions {
+    margin-top: 13px;
     display: flex;
-    flex-direction: column;
-    height: 100%;
-    h3 {
-      margin-bottom: 30px;
+    align-items: baseline;
+    a {
+      color: #EB5804;
+      margin-right: 10px;
     }
-    label {
-      width: 100%;
-      margin-bottom: 20px;
-    }
-    .actions {
-      margin-top: auto;
-      display: flex;
-      align-items: baseline;
-      a {
-        color: #EB5804;
-      }
-      button {
-        width: 130px;
-        margin-left: 10px;
-        &:first-of-type {
-          margin-left: auto;
-        }
+    button {
+      width: 130px;
+      margin-left: 10px;
+      &:first-of-type {
+        margin-left: auto;
       }
     }
   }
