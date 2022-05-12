@@ -67,7 +67,7 @@
                     </button>
             </template> -->
         </modal>
-        <text-editor />
+        <!-- <text-editor /> -->
         
     </div>
 </template>
