@@ -36,7 +36,7 @@
 
 export default {
   name: 'App',
-  // components: {
+  components: {
     // MyComponent1,
     // Dz1,
     // MyComponent2,
@@ -47,7 +47,7 @@ export default {
     // SignUp,
     // UserPage
 
-  // }
+  }
 }
 </script>
 
