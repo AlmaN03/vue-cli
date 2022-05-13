@@ -11,7 +11,7 @@
       class="more-info"
     > -->
     <router-link
-      :to="{ path: `/films/${film.id} `}"
+      :to="{ path:`/films/${film.id}`}"
       class="more-info"
     >
       Подробнее о фильме
