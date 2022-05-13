@@ -31,13 +31,14 @@ export default new VueRouter({
                     path:':id',
                     name:'FilmPage', 
                     component: FilmPage,
-                    beforeEnter: (to, from, next) => {
-                        if(localStorage.getItem('auth')) {
-                          next()
-                        } else {
-                          next({ name: 'films' })
-                        }
-                    }
+                    // есл ивключит это то не зайдёшь на карточку фильма без сука логина
+                    // beforeEnter: (to, from, next) => {
+                    //     if(localStorage.getItem('auth')) {
+                    //       next()
+                    //     } else {
+                    //       next({ name: 'films' })
+                    //     }
+                    // }
             
                 },
                 {
