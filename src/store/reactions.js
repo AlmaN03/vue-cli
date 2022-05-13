@@ -9,7 +9,11 @@ const loadReactions = (time) => {
 }
 
 export default {
-    namespaced: true,
+  //отвечает за то что если есть несколько одинаковых мутаций в разных модулях 
+  // то будут вызваны все
+  ///////////////////// 
+    namespaced: true, 
+  /////////////////////
     state: {
         reactions:[]
       },

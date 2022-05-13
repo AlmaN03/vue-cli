@@ -1,79 +1,68 @@
 <template>
-<div class="film-page">
-  <div class="container" v-if="film">
-    <h1>{{ film.title }}</h1>
-    <img
-      :src="film.img"
-      :alt="film.title"
-    >
-    <div class="section">
-      <p class="section__title">Немного о сюжете:</p>
-      <p class="section__description">{{ film.description }}</p>
+  <div class="film-page">
+    <div class="container" v-if="film">
+      <h1>{{ film.title }}</h1>
+      <img :src="film.img" :alt="film.title" />
+      <div class="section">
+        <p class="section__title">Немного о сюжете:</p>
+        <p class="section__description">{{ film.description }}</p>
+      </div>
+      <div class="section">
+        <p class="section__title">Рейтинг:</p>
+        <p class="section__description">{{ film.rating }}</p>
+      </div>
+      <div class="section">
+        <p class="section__title">Актерский состав:</p>
+        <p class="section__description">{{ film.actors.join(" ,") }}</p>
+      </div>
+      <div class="section">
+        <p class="section__title">Режисеры:</p>
+        <p class="section__description">{{ film.directors.join(", ") }}</p>
+      </div>
+      <div class="review">
+        <h3>Смотрели данный фильм ?</h3>
+        <p>Оставьте отзыв:</p>
+        <ul>
+          <li v-for="reaction in reactions" :key="reaction.id">
+            <button type="button" class="btn btn-outline-light">
+              {{ reaction.title }}
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="section">
-      <p class="section__title">Рейтинг:</p>
-      <p class="section__description">{{ film.rating }}</p>
-    </div>
-    <div class="section">
-      <p class="section__title">Актерский состав:</p>
-      <p class="section__description">{{ film.actors.join(', ') }}</p>
-    </div>
-    <div class="section">
-      <p class="section__title">Режисеры:</p>
-      <p class="section__description">{{ film.directors.join(', ') }}</p>
-    </div>
-    <div class="review">
-      <h3>Смотрели данный фильм ?</h3>
-      <p>Оставьте отзыв:</p>
-      <ul>
-        <li
-          v-for="reaction in reactions"
-          :key="reaction.id"
-        >
-          <button type="button" class="btn btn-outline-light">
-            {{ reaction.title }}
-          </button>
-        </li>
-      </ul>
-    </div>
-
-    
   </div>
-</div>
-  
 </template>
 
 <script>
-import films from '../mocks/films'
+import films from "../mocks/films";
 // import reactions from '../mocks/reactions'
-// import { mapGetters } from 'vuex'
-
-
+import { mapGetters } from "vuex";
 
 export default {
   data() {
     return {
-      film: null
+      film: null,
+    };
+  },
+  computed: {
+    ...mapGetters({
+      getReactions: "reactionsModul/getReactions",
+    }),
+    reactions() {
+      // return reactions
+      // return this.$store.getters.getReactions
+      //более крадкая запись верхнего
+      return this.getReactions;
+    },
+  },
+  created() {
+    const film = films.find((film) => film.id == this.$route.params.id);
+    if (film) {
+      this.film = film;
     }
   },
-  // computed:{
-  //   ...mapGetters({
-  //     getReactions: 'reactions/getReactions'
-  //   }),
-  //   reactions(){
-  //     //return reactions
-  //     // return this.$store.getters.getReactions 
-  //     return this.getReactions 
-
-  //   }
-  // },
-  created() {
-    const film = films.find(film => film.id == this.$route.params.id)
-    if (film) {
-      this.film = film
-    }
-  }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -92,7 +81,7 @@ export default {
   .line {
     width: 100%;
     height: 3px;
-    background: linear-gradient(90deg, #EB5804 0%, rgba(0,0,0,0) 90%);
+    background: linear-gradient(90deg, #eb5804 0%, rgba(0, 0, 0, 0) 90%);
     margin-bottom: 45px;
   }
   img {
@@ -104,7 +93,7 @@ export default {
   }
   .section {
     &__title {
-      color: #EB5804;
+      color: #eb5804;
       font-weight: 700;
       font-size: 25px;
       margin-bottom: 10px;
@@ -122,7 +111,7 @@ export default {
     p {
       font-weight: 600;
       font-size: 18px;
-      color: #EB5804;
+      color: #eb5804;
     }
     ul {
       padding-left: 0;
