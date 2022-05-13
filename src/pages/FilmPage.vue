@@ -46,7 +46,7 @@
 <script>
 import films from '../mocks/films'
 // import reactions from '../mocks/reactions'
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
 
 
 
@@ -56,17 +56,17 @@ export default {
       film: null
     }
   },
-  computed:{
-    ...mapGetters({
-      getReactions: 'reactions/getReactions'
-    }),
-    reactions(){
-      //return reactions
-      // return this.$store.getters.getReactions 
-      return this.getReactions 
+  // computed:{
+  //   ...mapGetters({
+  //     getReactions: 'reactions/getReactions'
+  //   }),
+  //   reactions(){
+  //     //return reactions
+  //     // return this.$store.getters.getReactions 
+  //     return this.getReactions 
 
-    }
-  },
+  //   }
+  // },
   created() {
     const film = films.find(film => film.id == this.$route.params.id)
     if (film) {
