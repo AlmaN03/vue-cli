@@ -30,7 +30,19 @@ export default new VueRouter({
                 {
                     path:':id',
                     name:'FilmPage',
-                    component: FilmPage
+                    component: FilmPage,
+                    beforeEnter: (to, from, next) => {
+                        if(localStorage.getItem('auth')) {
+                          next()
+                        } else {
+                          next({ name: 'films' })
+                        }
+                    }
+                    
+                },
+                {
+                    path:'*/*',
+                    redirect: { name: 'films' }
                 },
             ]
         },

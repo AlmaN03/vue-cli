@@ -16,55 +16,36 @@
         <button
           type="button"
           class="btn btn-outline-light btn-lg"
-          @click="onAuthBtnClick"
+          @click="changeUserState"
         >
-          {{ getUser ? 'Выйти' : 'Войти' }}
+          {{ auth ? 'Выйти' : 'Войти' }}
         </button>
       </div>
     </div>
-    <auth-modal
-      v-if="isAuthModalOpen"
-      @close="isAuthModalOpen = false"
-    />
   </header>
 </template>
 
 <script>
-import AuthModal from './AuthModal'
-// import { mapGetters, mapActions } from 'vuex'
-
 export default {
-  components: { AuthModal },
   data() {
     return {
-      isAuthorized: false,
-      isAuthModalOpen: false
+      auth: false
     }
   },
-  // computed: {
-  //   ...mapGetters({
-  //     getUser: 'user/getUser'
-  //   })
-  // },
-  // created() {
-  //   this.setUser(JSON.parse(localStorage.getItem('user')))
-  // },
-  // methods: {
-  //   // ...mapActions({
-  //   //   setUser: 'user/setUser',
-  //   //   deleteUser: 'user/deleteUser'
-  //   // }),
-  //   onAuthBtnClick() {
-  //     if (this.getUser) {
-  //       this.$api.auth.logout()
-  //       localStorage.removeItem('user')
-  //       this.deleteUser()
-  //       this.$router.push({ name: 'main' })
-  //     } else {
-  //       this.isAuthModalOpen = true
-  //     }
-  //   }
-  // }
+  created() {
+    this.auth = localStorage.getItem('auth') !== null
+  },
+  methods: {
+    changeUserState() {
+      if (this.auth) {
+        localStorage.removeItem('auth')
+        this.$router.push({ name: 'main'})
+      } else {
+        localStorage.setItem('auth', true)
+        this.auth = true
+      }
+    }
+  }
 }
 </script>
 
