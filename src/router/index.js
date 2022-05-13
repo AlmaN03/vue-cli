@@ -19,17 +19,17 @@ export default new VueRouter({
         },
         {
             path:'/films',
-            name:'filmsLayout', 
+            name:'filmsLayout',
             component: FilmsLayout,
-            children:[
+            children: [
                 {
                     path:'',
-                    name:'films', // предпочтительней указыват ьещё и и мя так как путь может поменятся а имя с меньшей вероятностью
+                    name:'films',
                     component: AllFilmsPage
                 },
                 {
                     path:':id',
-                    name:'FilmPage', 
+                    name:'FilmPage',
                     component: FilmPage,
                     // есл ивключит это то не зайдёшь на карточку фильма без сука логина
                     // beforeEnter: (to, from, next) => {
@@ -39,7 +39,6 @@ export default new VueRouter({
                     //       next({ name: 'films' })
                     //     }
                     // }
-            
                 },
                 {
                     path:'*/*',
@@ -47,16 +46,7 @@ export default new VueRouter({
                 },
             ]
         },
-        // {
-        //     path:'/films',
-        //     name:'films', // предпочтительней указыват ьещё и и мя так как путь может поменятся а имя с меньшей вероятностью
-        //     component: AllFilmsPage
-        // },
-        // {
-        //     path:'/films/:id',
-        //     name:'FilmPage', 
-        //     component: FilmPage
-        // },
+        
         {
             path: '/:catchAll(.*)',
             name:'notFound',
