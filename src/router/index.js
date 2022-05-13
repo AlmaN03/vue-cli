@@ -2,8 +2,8 @@ import VueRouter from 'vue-router'
 import AllFilmsPage from '../pages/AllFilmsPage.vue'
 import MainPage from '../pages/MainPage.vue'
 import FilmPage from '../pages/FilmPage.vue'
-// import NotFound from '../pages/ErorEror.vue'
-// import FilmsLayout from '../pages/FilmsLayout.vue'
+import NotFound from '../pages/ErorEror.vue'
+import FilmsLayout from '../pages/FilmsLayout.vue'
 
 
 
@@ -19,13 +19,26 @@ export default new VueRouter({
         },
         {
             path:'/films',
-            name:'films',
-            component: AllFilmsPage
+            name:'filmsLayout',
+            component: FilmsLayout,
+            children: [
+                {
+                    path:'',
+                    name:'films',
+                    component: AllFilmsPage
+                },
+                {
+                    path:':id',
+                    name:'FilmPage',
+                    component: FilmPage
+                },
+            ]
         },
+        
         {
-            path:'/films/:id',
-            name:'FilmPage',
-            component: FilmPage
+            path: '/:catchAll(.*)',
+            name:'notFound',
+            component: NotFound
         },
     ]
   })

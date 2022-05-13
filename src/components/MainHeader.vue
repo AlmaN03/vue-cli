@@ -31,7 +31,7 @@
 
 <script>
 import AuthModal from './AuthModal'
-import { mapGetters, mapActions } from 'vuex'
+// import { mapGetters, mapActions } from 'vuex'
 
 export default {
   components: { AuthModal },
@@ -41,30 +41,30 @@ export default {
       isAuthModalOpen: false
     }
   },
-  computed: {
-    ...mapGetters({
-      getUser: 'user/getUser'
-    })
-  },
-  created() {
-    this.setUser(JSON.parse(localStorage.getItem('user')))
-  },
-  methods: {
-    ...mapActions({
-      setUser: 'user/setUser',
-      deleteUser: 'user/deleteUser'
-    }),
-    onAuthBtnClick() {
-      if (this.getUser) {
-        this.$api.auth.logout()
-        localStorage.removeItem('user')
-        this.deleteUser()
-        this.$router.push({ name: 'main' })
-      } else {
-        this.isAuthModalOpen = true
-      }
-    }
-  }
+  // computed: {
+  //   ...mapGetters({
+  //     getUser: 'user/getUser'
+  //   })
+  // },
+  // created() {
+  //   this.setUser(JSON.parse(localStorage.getItem('user')))
+  // },
+  // methods: {
+  //   // ...mapActions({
+  //   //   setUser: 'user/setUser',
+  //   //   deleteUser: 'user/deleteUser'
+  //   // }),
+  //   onAuthBtnClick() {
+  //     if (this.getUser) {
+  //       this.$api.auth.logout()
+  //       localStorage.removeItem('user')
+  //       this.deleteUser()
+  //       this.$router.push({ name: 'main' })
+  //     } else {
+  //       this.isAuthModalOpen = true
+  //     }
+  //   }
+  // }
 }
 </script>
 
