@@ -34,7 +34,7 @@ export default new VueRouter({
                     //  если включить это то нек зайдёшь на описание фильма без логина 
                     // beforeEnter: (to, from, next) => {
                     //     if(localStorage.getItem('auth')) {
-                    //       next()
+                    //       next() 
                     //     } else {
                     //       next({ name: 'films' })
                     //     }
