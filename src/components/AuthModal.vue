@@ -99,29 +99,17 @@ export default {
       }
     },
     signIn() {
-      this.$load(async() => {
-        const data = (await this.$api.auth.signIn({
-          email: this.form.email,
-          password: this.form.password
-        })).data
-        localStorage.setItem('user', JSON.stringify(data))
-        this.$store.dispatch('user/setUser', data)
-        this.$emit('close')
-      })
+      fetch('http://localhost:3000/auth/sign_in',{
+        methods: 'POST',
+        headers:{
+          'Content-Type': 'aplication/json'
+        }
+      } )
     },
-    signUp() {
-      this.$load(async() => {
-        const data = (await this.$api.auth.signUp({
-          email: this.form.email,
-          password: this.form.password
-        })).data
-        localStorage.setItem('user', JSON.stringify(data))
-        this.$store.dispatch('user/setUser', data)
-        this.$emit('close')
-      })
-    }
+    signUp() {}
   }
 }
+
 </script>
 
 <style lang="scss">
