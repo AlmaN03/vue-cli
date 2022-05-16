@@ -47,7 +47,7 @@ export default {
     })
   },
   created() {
-    this.setUser(JSON.parse(localStorage.getItem('user')))
+    this.setUser(JSON.parse( localStorage.getItem('user')))
   },
   methods: {
     ...mapActions({
