@@ -3,55 +3,56 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <modal
-          name="auth-modal"
-          classes="auth-modal"
-          height="350px"
-          width="500px"
-          @before-close="close"
+    name="auth-modal"
+    classes="auth-modal"
+    height="350px"
+    width="500px"
+    @before-close="close"
+  >
+    <form @submit.prevent="formSubmit">
+      <h3>{{ isSignInForm ? 'Войти' : 'Зарегистрироваться' }}</h3>
+      <label>
+        Email
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Ваша эл. почта"
+          v-model="form.email"
         >
-          <form @submit.prevent="formSubmit">
-            <h3>{{ isSignInForm ? 'Войти' : 'Зарегистрироваться' }}</h3>
-            <label>
-              Email
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Ваша эл. почта"
-                v-model="form.email"
-              >
-            </label>
-            <label>
-              Пароль
-              <input
-                type="password"
-                class="form-control"
-                placeholder="Ваш пароль"
-                v-model="form.password"
-              >
-            </label>
-            <div class="actions">
-              <a
-                href="#"
-                @click.prevent="mode = isSignInForm ? 'signUp' : 'signIn'"
-              >
-                {{ isSignInForm ? 'Регистрация' : 'Вход' }}
-              </a>
-              <button
-                type="button"
-                class="btn btn-outline-dark"
-                @click="$emit('close')"
-              >
-                Отмена
-              </button>
-              <button
-                type="submit"
-                class="btn btn-dark"
-              >
-                Подтвердить
-              </button>
-            </div>
-          </form>
-        </modal>
+      </label>
+      <label>
+        Пароль
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Ваш пароль"
+          v-model="form.password"
+        >
+      </label>
+      <div class="actions">
+        <a 
+          href="#"
+          @click.prevent="mode = isSignInForm ? 'signUp' : 'signIn'"
+        >
+          {{ isSignInForm ? 'Регистрация' : 'Вход' }}
+        </a>
+        <button
+          type="button"
+          class="btn btn-outline-dark"
+          @click="$emit('close')"
+        >
+          Отмена
+        </button>
+        <button
+          type="submit"
+          class="btn btn-dark"
+        >
+          Подтвердить
+        </button>
+      </div>
+    </form>
+  </modal>
+
       </div>
     </div>
   </div>            
@@ -98,13 +99,19 @@ export default {
         this.signUp()
       }
     },
-    signIn() {
-      fetch('http://localhost:3000/auth/sign_in',{
+    async signIn() {
+      const res = await fetch('http://localhost:3000/auth/sign_in',{
         methods: 'POST',
         headers:{
           'Content-Type': 'aplication/json'
-        }
-      } )
+        },
+        credentials: 'include',
+        body: JSON.stringify ({
+          email: this.form.email,
+          password: this.form.password
+        })
+      })
+      console.log(res);
     },
     signUp() {}
   }
