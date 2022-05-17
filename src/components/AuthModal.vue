@@ -3,120 +3,125 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <modal
-    name="auth-modal"
-    classes="auth-modal"
-    height="350px"
-    width="500px"
-    @before-close="close"
-  >
-    <form @submit.prevent="formSubmit">
-      <h3>{{ isSignInForm ? 'Войти' : 'Зарегистрироваться' }}</h3>
-      <label>
-        Email
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Ваша эл. почта"
-          v-model="form.email"
+          name="auth-modal"
+          classes="auth-modal"
+          height="350px"
+          width="500px"
+          @before-close="close"
         >
-      </label>
-      <label>
-        Пароль
-        <input
-          type="password"
-          class="form-control"
-          placeholder="Ваш пароль"
-          v-model="form.password"
-        >
-      </label>
-      <div class="actions">
-        <a 
-          href="#"
-          @click.prevent="mode = isSignInForm ? 'signUp' : 'signIn'"
-        >
-          {{ isSignInForm ? 'Регистрация' : 'Вход' }}
-        </a>
-        <button
-          type="button"
-          class="btn btn-outline-dark"
-          @click="$emit('close')"
-        >
-          Отмена
-        </button>
-        <button
-          type="submit"
-          class="btn btn-dark"
-        >
-          Подтвердить
-        </button>
-      </div>
-    </form>
-  </modal>
-
+          <form @submit.prevent="formSubmit">
+            <h3>{{ isSignInForm ? "Войти" : "Зарегистрироваться" }}</h3>
+            <label>
+              Email
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Ваша эл. почта"
+                v-model="form.email"
+              />
+            </label>
+            <label>
+              Пароль
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Ваш пароль"
+                v-model="form.password"
+              />
+            </label>
+            <div class="actions">
+              <a
+                href="#"
+                @click.prevent="mode = isSignInForm ? 'signUp' : 'signIn'"
+              >
+                {{ isSignInForm ? "Регистрация" : "Вход" }}
+              </a>
+              <button
+                type="button"
+                class="btn btn-outline-dark"
+                @click="$emit('close')"
+              >
+                Отмена
+              </button>
+              <button type="submit" class="btn btn-dark">Подтвердить</button>
+            </div>
+          </form>
+        </modal>
       </div>
     </div>
-  </div>            
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'auth-modal',
+  name: "auth-modal",
   data() {
     return {
-      mode: 'signIn',
+      mode: "signIn",
       form: {
-        email: '',
-        password: '' 
+        email: "",
+        password: "",
       },
-      errors: []
-    }
+      errors: [],
+    };
   },
   computed: {
     isSignInForm() {
-      return this.mode === 'signIn'
-    }
+      return this.mode === "signIn";
+    },
   },
-  mounted () {
-    this.$modal.show('auth-modal')
+  mounted() {
+    this.$modal.show("auth-modal");
   },
   methods: {
     changeUserState() {
       if (this.auth) {
-        localStorage.removeItem('auth')
-        this.$router.push({ name: 'main'})
+        localStorage.removeItem("auth");
+        this.$router.push({ name: "main" });
       } else {
-        localStorage.setItem('auth', true)
-        this.auth = true
+        localStorage.setItem("auth", true);
+        this.auth = true;
       }
     },
     close() {
-      this.$emit('close')
+      this.$emit("close");
     },
     formSubmit() {
       if (this.isSignInForm) {
-        this.signIn()
+        this.signIn();
       } else {
-        this.signUp()
+        this.signUp();
       }
     },
     async signIn() {
-      const res = await fetch('http://localhost:3000/auth/sign_in',{
-        methods: 'POST',
-        headers:{
-          'Content-Type': 'aplication/json'
-        },
-        credentials: 'include',
-        body: JSON.stringify ({
-          email: this.form.email,
-          password: this.form.password
-        })
-      })
-      console.log(res);
+      try {
+        const res = await fetch("http://localhost:3000/auth/sign_in", {
+          methods: "POST",
+          headers: {
+            "Content-Type": "aplication/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({
+            email: this.form.email,
+            password: this.form.password,
+          }),
+        });
+        const data = await res.ison();
+        if (res.status === 200 || res.status === 201) {
+          localStorage.setItem('user', data )
+          this.$$store.dispatch('user/setUser', data )
+          this.$emit('close')
+        } else {
+          this.errors = data;
+          console.error(data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
     },
-    signUp() {}
-  }
-}
-
+    signUp() {},
+  },
+};
 </script>
 
 <style lang="scss">
@@ -125,7 +130,7 @@ export default {
   display: flex;
 }
 
-modal{
+modal {
   padding: 30px 40px;
 }
 
@@ -146,7 +151,7 @@ form {
     display: flex;
     align-items: baseline;
     a {
-      color: #EB5804;
+      color: #eb5804;
       margin-right: 10px;
     }
     button {
